@@ -1,0 +1,16 @@
+input[type="text"], 
+input[type="password"], 
+textarea, 
+textarea.form-control {
+	height: 45px;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+button.btn {
+	height: 45px;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: 400;
+}
