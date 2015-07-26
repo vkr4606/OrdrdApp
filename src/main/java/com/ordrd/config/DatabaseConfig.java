@@ -19,8 +19,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class DatabaseConfig {
 
-	private static final String ROOT = "root";
-	private static final String JDBC_MYSQL_URL = "jdbc:mysql://localhost:3306/order_app";
+	private static final String USER = "root";
+	private static final String PASSWORD = "root";
+	private static final String JDBC_MYSQL_URL = "jdbc:mysql://localhost:3306/ordrd_app";
 	private static final String MYSQL_JDBC_DRIVER_CLASS = "com.mysql.jdbc.Driver";
 	private static final String DB_MODEL_PACKAGE = "com.ordrd.model";
 
@@ -48,8 +49,8 @@ public class DatabaseConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(MYSQL_JDBC_DRIVER_CLASS);
 		dataSource.setUrl(JDBC_MYSQL_URL);
-		dataSource.setUsername(ROOT);
-		dataSource.setPassword(ROOT);
+		dataSource.setUsername(USER);
+		dataSource.setPassword(PASSWORD);
 		return dataSource;
 	}
 
