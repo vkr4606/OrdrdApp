@@ -20,9 +20,12 @@ public class Location {
 
 	@Column(name = "CITY")
 	private String city;
+	
+	@Column(name = "LATTITUDE")
+	private String lattitude;
 
-	@Column(name = "COORDINATES")
-	private String coordinates;
+	@Column(name = "LONGITUDE")
+	private String longitude;
 
 	public int getId() {
 		return id;
@@ -48,12 +51,19 @@ public class Location {
 		this.city = city;
 	}
 
-	public String getCoordinates() {
-		return coordinates;
+	public String getLattitude() {
+		return lattitude;
 	}
 
-	public void setCoordinates(String coordinates) {
-		this.coordinates = coordinates;
+	public void setLattitude(String lattitude) {
+		this.lattitude = lattitude;
 	}
 
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 }
