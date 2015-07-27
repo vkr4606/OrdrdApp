@@ -33,12 +33,12 @@ public class UserDAO {
 		entityManager.persist(User);
 	}
 
-	public void update(User User) {
-		entityManager.merge(User);
+	public User update(User user) {
+		return entityManager.merge(user);
 	}
 
-	public void delete(User User) {
-		entityManager.remove(User);
+	public void delete(User user) {
+		entityManager.remove(user);
 	}
 
 }

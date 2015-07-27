@@ -28,18 +28,19 @@ public class UserService {
 	}
 
 	@Transactional
-	public void insert(User User) {
-		userDAO.insert(User);
+	public void insert(User user) {
+		userDAO.insert(user);
 	}
 
 	@Transactional
-	public void update(User User) {
-		userDAO.update(User);
+	public User update(User user) {
+		return userDAO.update(user);
 	}
 
 	@Transactional
-	public void delete(User User) {
-		userDAO.delete(User);
+	public void delete(int userId) {
+		User user = userDAO.findById(userId);
+		userDAO.delete(user);
 	}
 
 }
