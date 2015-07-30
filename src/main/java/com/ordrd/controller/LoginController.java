@@ -47,7 +47,6 @@ public class LoginController {
 			return "register";
 		}
 		user.setRole("USER");
-		user.setUsername(user.getFirstName() + "." + user.getLastName());
 		user.setActiveFlag(true);
 		userService.insert(user);
 		return "redirect:/welcome";

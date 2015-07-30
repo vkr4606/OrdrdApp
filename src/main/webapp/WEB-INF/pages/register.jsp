@@ -82,6 +82,7 @@
           <button type="reset" id="reset" name="reset" class="btn btn-default">Reset</button>
         </div>
       </div>
+      <div class="form-group">Have an existing account? <a href="login">log in</a></div>
       <div class="form-group">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       </div>

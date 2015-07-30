@@ -18,9 +18,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/assets/**", "/register**", "/users/**").permitAll();
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
-		http.csrf().disable();
+		http.authorizeRequests().antMatchers("/assets/**", "/register/**").permitAll()
+				.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+		// http.csrf().disable();
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication()
 				.dataSource(dataSource)
 				.usersByUsernameQuery(
-						"select username, password, active_flag from user where username = ? ")
-				.authoritiesByUsernameQuery("select username, role from user where username = ? ");
+						"select email_id, password, active_flag from user where email_id = ? ")
+				.authoritiesByUsernameQuery("select username, role from user where email_id = ? ");
 	}
 }

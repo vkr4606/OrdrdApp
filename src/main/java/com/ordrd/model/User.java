@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,7 +23,6 @@ public class User {
 	@Column(name = "ID")
 	private int id;
 
-	@NotEmpty
 	@Column(name = "USERNAME")
 	private String username;
 
@@ -60,11 +58,9 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastLogin;
 
-	@NotEmpty
 	@Column(name = "ROLE")
 	private String role;
 
-	@NotNull
 	@Column(name = "ACTIVE_FLAG")
 	private boolean activeFlag;
 

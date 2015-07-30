@@ -57,7 +57,7 @@
               </div>
               <button type="submit" class="btn btn-info">Log in</button>
             </form>
-            <div class="form-group">Do not have any account? <a href="register">Create New Account</a></div>
+            <div class="form-group">Do not have any account? <a href="register">create new account</a></div>
           </div>
         </div>
       </div>

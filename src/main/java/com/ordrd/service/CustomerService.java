@@ -11,7 +11,7 @@ import com.ordrd.dao.CustomerDAO;
 import com.ordrd.model.Customer;
 
 @Service
-public class SecondService {
+public class CustomerService {
 
 	@Autowired
 	private CustomerDAO customerDAO;

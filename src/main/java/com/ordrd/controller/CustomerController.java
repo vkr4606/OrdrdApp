@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ordrd.model.Customer;
 import com.ordrd.model.Location;
-import com.ordrd.service.SecondService;
+import com.ordrd.service.CustomerService;
 
 @RestController
-public class MainController {
+public class CustomerController {
 
 	@Autowired
-	private SecondService secondService;
+	private CustomerService secondService;
 
 	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Customer getCustomer(@RequestParam(value = "id", defaultValue = "1") String id) {
