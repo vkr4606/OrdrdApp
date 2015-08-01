@@ -18,8 +18,8 @@ public class UserService {
 
 	@Transactional
 	public User findById(int userId) {
-		User User = userDAO.findById(userId);
-		return User;
+		User user = userDAO.findById(userId);
+		return user;
 	}
 
 	@Transactional

@@ -29,8 +29,8 @@ public class UserDAO {
 		return entityManager.find(User.class, userId);
 	}
 
-	public void insert(User User) {
-		entityManager.persist(User);
+	public void insert(User user) {
+		entityManager.persist(user);
 	}
 
 	public User update(User user) {
