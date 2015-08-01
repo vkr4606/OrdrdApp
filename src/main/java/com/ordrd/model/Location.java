@@ -22,10 +22,10 @@ public class Location {
 	private String city;
 	
 	@Column(name = "LATTITUDE")
-	private String lattitude;
+	private Float lattitude;
 
 	@Column(name = "LONGITUDE")
-	private String longitude;
+	private Float longitude;
 
 	public int getId() {
 		return id;
@@ -51,19 +51,19 @@ public class Location {
 		this.city = city;
 	}
 
-	public String getLattitude() {
+	public Float getLattitude() {
 		return lattitude;
 	}
 
-	public void setLattitude(String lattitude) {
+	public void setLattitude(Float lattitude) {
 		this.lattitude = lattitude;
 	}
 
-	public String getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 }

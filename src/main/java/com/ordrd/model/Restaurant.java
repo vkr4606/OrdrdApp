@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,12 +47,19 @@ public class Restaurant {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
+	
+	@OneToOne(optional = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "RESTAURANT_CURRENT_STATUS_ID")
+	private RestaurantCurrentStatus restaurantCurrentStatus;
 
 	@Column(name = "ADDRESS")
 	private String address;
 
-	@Column(name = "LOCATION_COORDINATES")
-	private String locationCoordinates;
+	@Column(name = "LATTITUDE")
+	private Float lattitude;
+
+	@Column(name = "LONGITUDE")
+	private Float longitude;
 
 	@Column(name = "OPENING_TIME")
 	@Temporal(TemporalType.TIME)
@@ -61,24 +69,11 @@ public class Restaurant {
 	@Temporal(TemporalType.TIME)
 	private Date closingTime;
 
-	@Column(name = "PRICE_RANGE")
-	private String priceRange;
-
-	@Column(name = "RATING")
-	private float rating;
-
-	@Column(name = "RATING_LSTUPDDT")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date ratingLastUpdate;
-
 	@Column(name = "ACTIVE_FLAG")
 	private boolean activeFlag;
 
-	@Column(name = "NONVEG_FLAG")
-	private boolean nonvegFlag;
-
-	@Column(name = "ALCOHOL_FLAG")
-	private boolean alcoholFlag;
+	@Column(name = "ADVANCE_BOOKING_FLAG")
+	private boolean advncBookingFlag;
 
 	public int getId() {
 		return id;
@@ -152,6 +147,15 @@ public class Restaurant {
 		this.location = location;
 	}
 
+	public RestaurantCurrentStatus getRestaurantCurrentStatus() {
+		return restaurantCurrentStatus;
+	}
+
+	public void setRestaurantCurrentStatus(
+			RestaurantCurrentStatus restaurantCurrentStatus) {
+		this.restaurantCurrentStatus = restaurantCurrentStatus;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -160,12 +164,20 @@ public class Restaurant {
 		this.address = address;
 	}
 
-	public String getLocationCoordinates() {
-		return locationCoordinates;
+	public Float getLattitude() {
+		return lattitude;
 	}
 
-	public void setLocationCoordinates(String locationCoordinates) {
-		this.locationCoordinates = locationCoordinates;
+	public void setLattitude(Float lattitude) {
+		this.lattitude = lattitude;
+	}
+
+	public Float getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
 	}
 
 	public Date getOpeningTime() {
@@ -184,30 +196,6 @@ public class Restaurant {
 		this.closingTime = closingTime;
 	}
 
-	public String getPriceRange() {
-		return priceRange;
-	}
-
-	public void setPriceRange(String priceRange) {
-		this.priceRange = priceRange;
-	}
-
-	public float getRating() {
-		return rating;
-	}
-
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
-
-	public Date getRatingLastUpdate() {
-		return ratingLastUpdate;
-	}
-
-	public void setRatingLastUpdate(Date ratingLastUpdate) {
-		this.ratingLastUpdate = ratingLastUpdate;
-	}
-
 	public boolean isActiveFlag() {
 		return activeFlag;
 	}
@@ -216,20 +204,12 @@ public class Restaurant {
 		this.activeFlag = activeFlag;
 	}
 
-	public boolean isNonvegFlag() {
-		return nonvegFlag;
+	public boolean isAdvncBookingFlag() {
+		return advncBookingFlag;
 	}
 
-	public void setNonvegFlag(boolean nonvegFlag) {
-		this.nonvegFlag = nonvegFlag;
-	}
-
-	public boolean isAlcoholFlag() {
-		return alcoholFlag;
-	}
-
-	public void setAlcoholFlag(boolean alcoholFlag) {
-		this.alcoholFlag = alcoholFlag;
+	public void setAdvncBookingFlag(boolean advncBookingFlag) {
+		this.advncBookingFlag = advncBookingFlag;
 	}
 
 }
