@@ -7,8 +7,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
+
 import com.ordrd.model.RestaurantStatus;
 
+@Repository
 public class RestaurantStatusDAO {
 
 	@PersistenceContext
@@ -26,8 +29,8 @@ public class RestaurantStatusDAO {
 		return entityManager.find(RestaurantStatus.class, restaurantId);
 	}
 
-	public void insert(RestaurantStatus restaurantCurrentStatus) {
-		entityManager.persist(restaurantCurrentStatus);
+	public void insert(RestaurantStatus restaurantStatus) {
+		entityManager.persist(restaurantStatus);
 	}
 
 	public RestaurantStatus update(RestaurantStatus restaurantStatus) {

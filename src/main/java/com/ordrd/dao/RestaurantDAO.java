@@ -7,18 +7,19 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
+
 import com.ordrd.model.Restaurant;
 
-
-
+@Repository
 public class RestaurantDAO {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public List<Restaurant> findAll() {
-		CriteriaQuery<Restaurant> createQuery = entityManager.getCriteriaBuilder()
-				.createQuery(Restaurant.class);
+		CriteriaQuery<Restaurant> createQuery = entityManager.getCriteriaBuilder().createQuery(
+				Restaurant.class);
 		Root<Restaurant> from = createQuery.from(Restaurant.class);
 		createQuery.select(from);
 		return entityManager.createQuery(createQuery).getResultList();

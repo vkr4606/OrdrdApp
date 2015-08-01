@@ -5,12 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ordrd.dao.LocationDAO;
 import com.ordrd.model.Location;
 
+@Service
 public class LocationService {
-	
+
 	@Autowired
 	private LocationDAO locationDAO;
 

@@ -7,16 +7,19 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
+
 import com.ordrd.model.Location;
 
+@Repository
 public class LocationDAO {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public List<Location> findAll() {
-		CriteriaQuery<Location> createQuery = entityManager.getCriteriaBuilder()
-				.createQuery(Location.class);
+		CriteriaQuery<Location> createQuery = entityManager.getCriteriaBuilder().createQuery(
+				Location.class);
 		Root<Location> from = createQuery.from(Location.class);
 		createQuery.select(from);
 		return entityManager.createQuery(createQuery).getResultList();

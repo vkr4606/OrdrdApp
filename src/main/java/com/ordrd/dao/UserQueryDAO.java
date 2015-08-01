@@ -7,16 +7,19 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
+
 import com.ordrd.model.UserQuery;
 
+@Repository
 public class UserQueryDAO {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	public List<UserQuery> findAll() {
-		CriteriaQuery<UserQuery> createQuery = entityManager.getCriteriaBuilder()
-				.createQuery(UserQuery.class);
+		CriteriaQuery<UserQuery> createQuery = entityManager.getCriteriaBuilder().createQuery(
+				UserQuery.class);
 		Root<UserQuery> from = createQuery.from(UserQuery.class);
 		createQuery.select(from);
 		return entityManager.createQuery(createQuery).getResultList();
