@@ -1,14 +1,12 @@
 package com.ordrd.controller;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -27,19 +25,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserById(@PathVariable(value = "userId") String userId) {
 		User user = userService.findById(Integer.parseInt(userId));
 		return ResponseEntity.status(HttpStatus.OK).body(user);
 	}
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> getAllUser() {
 		List<User> userList = userService.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(userList);
 	}
 
-	@RequestMapping(value = "/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@Valid User user, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
@@ -53,7 +51,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).location(locationUri).build();
 	}
 
-	@RequestMapping(value = "/users/{userId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.POST)
 	public ResponseEntity<?> updateUser(@PathVariable(value = "userId") String userId,
 			@Valid User user, BindingResult bindingResult) {
 

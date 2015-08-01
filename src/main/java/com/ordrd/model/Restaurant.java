@@ -47,10 +47,10 @@ public class Restaurant {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
-	
+
 	@OneToOne(optional = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "RESTAURANT_CURRENT_STATUS_ID")
-	private RestaurantCurrentStatus restaurantCurrentStatus;
+	@JoinColumn(name = "RESTAURANT_STATUS_ID")
+	private RestaurantStatus restaurantStatus;
 
 	@Column(name = "ADDRESS")
 	private String address;
@@ -73,7 +73,7 @@ public class Restaurant {
 	private boolean activeFlag;
 
 	@Column(name = "ADVANCE_BOOKING_FLAG")
-	private boolean advncBookingFlag;
+	private boolean advanceBookingFlag;
 
 	public int getId() {
 		return id;
@@ -147,13 +147,12 @@ public class Restaurant {
 		this.location = location;
 	}
 
-	public RestaurantCurrentStatus getRestaurantCurrentStatus() {
-		return restaurantCurrentStatus;
+	public RestaurantStatus getRestaurantStatus() {
+		return restaurantStatus;
 	}
 
-	public void setRestaurantCurrentStatus(
-			RestaurantCurrentStatus restaurantCurrentStatus) {
-		this.restaurantCurrentStatus = restaurantCurrentStatus;
+	public void setRestaurantStatus(RestaurantStatus restaurantStatus) {
+		this.restaurantStatus = restaurantStatus;
 	}
 
 	public String getAddress() {
@@ -204,12 +203,12 @@ public class Restaurant {
 		this.activeFlag = activeFlag;
 	}
 
-	public boolean isAdvncBookingFlag() {
-		return advncBookingFlag;
+	public boolean isAdvanceBookingFlag() {
+		return advanceBookingFlag;
 	}
 
-	public void setAdvncBookingFlag(boolean advncBookingFlag) {
-		this.advncBookingFlag = advncBookingFlag;
+	public void setAdvanceBookingFlag(boolean advanceBookingFlag) {
+		this.advanceBookingFlag = advanceBookingFlag;
 	}
 
 }

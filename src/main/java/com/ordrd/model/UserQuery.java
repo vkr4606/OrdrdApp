@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 public class UserQuery {
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -21,21 +21,21 @@ public class UserQuery {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	private User user;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@Column(name = "STATUS")
 	private String status;
-	
-	@Column(name = "RGSTRTN_TIME")
+
+	@Column(name = "REGISTRATION_TIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date registrationTime;
-	
-	@Column(name="TYPE")
+
+	@Column(name = "TYPE")
 	private int type;
-	
-	@Column(name = "LSTUPDDT")
+
+	@Column(name = "LAST_UPDATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastUpdate;
 
@@ -94,5 +94,5 @@ public class UserQuery {
 	public void setLastUpdate(Date lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
-	
+
 }
