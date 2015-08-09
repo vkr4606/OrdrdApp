@@ -76,8 +76,8 @@ public class User {
 		return username;
 	}
 
-	public void setUsername(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -167,4 +167,5 @@ public class User {
 	public void setActiveFlag(boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
+
 }

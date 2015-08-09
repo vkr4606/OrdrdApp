@@ -4,10 +4,11 @@ drop table if exists location;
 drop table if exists restaurant;
 drop table if exists restaurant_status;
 drop table if exists user;
+drop table if exists user_role;
 drop table if exists user_query;
 
 CREATE TABLE `location` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(45) NOT NULL,
   `CITY` varchar(20) NOT NULL,
   `LATTITUDE` decimal(10,6) NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE `location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `restaurant` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(45) NOT NULL,
   `DESCRIPTION` varchar(100) NOT NULL,
   `CONTACT_NO` int(11) NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE `restaurant` (
   `LONGITUDE` decimal(10,6) NOT NULL,
   `OPENING_TIME` time(6) NOT NULL,
   `CLOSING_TIME` time(6) NOT NULL,
-  `ACTIVE_FLAG` tinyint(1) NOT NULL DEFAULT '1',
+  `ACTIVE_FLAG` tinyint(1) NOT NULL DEFAULT 1,
   `ADVANCE_BOOKING_FLAG` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `LOCATION_ID_FK_idx` (`LOCATION_ID`),
@@ -41,7 +42,7 @@ CREATE TABLE `restaurant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `restaurant_status` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `OCCUPANCY` int(11) DEFAULT NULL,
   `WAIT_TIME_2` int(11) DEFAULT NULL,
   `WAIT_TIME_GROUP` int(11) DEFAULT NULL,
@@ -50,7 +51,7 @@ CREATE TABLE `restaurant_status` (
 
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(20) DEFAULT NULL,
+  `USERNAME` varchar(45) NOT NULL,
   `PASSWORD` varchar(20) NOT NULL,
   `FIRST_NAME` varchar(20) NOT NULL,
   `LAST_NAME` varchar(20) NOT NULL,
@@ -60,13 +61,13 @@ CREATE TABLE `user` (
   `GOOGLE_ID` varchar(45) DEFAULT NULL,
   `PROFILE_PIC` varchar(45) DEFAULT NULL,
   `LAST_LOGIN` datetime DEFAULT NULL,
+  `ACTIVE_FLAG` tinyint(1) NOT NULL DEFAULT '1',
   `ROLE` varchar(45) NOT NULL,
-  `ACTIVE_FLAG` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `user_query` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_ID` int(11) NOT NULL,
   `DESCRIPTION` varchar(1024) NOT NULL,
   `STATUS` varchar(12) NOT NULL,

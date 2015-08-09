@@ -46,7 +46,11 @@ public class LoginController {
 			System.out.println(allErrors);
 			return "register";
 		}
-		user.setRole("USER");
+
+		if (user.getUsername() == null) {
+			user.setUsername(user.getEmailId());
+		}
+		user.setRole("ROLE_ADMIN");
 		user.setActiveFlag(true);
 		userService.insert(user);
 		return "redirect:/welcome";
