@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ordrd.dao.RestaurantDAO;
 import com.ordrd.model.Restaurant;
+import com.ordrd.variableObject.RestaurantFilter;
 
 @Service
 public class RestaurantService {
@@ -41,6 +42,10 @@ public class RestaurantService {
 	public void delete(int restaurantId) {
 		Restaurant restaurant = restaurantDAO.findById(restaurantId);
 		restaurantDAO.delete(restaurant);
+	}
+	
+	public List<Restaurant> getRestaurantList(RestaurantFilter restaurantFilter){
+		return restaurantDAO.getRestaurantList(restaurantFilter);
 	}
 
 }

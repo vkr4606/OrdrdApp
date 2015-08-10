@@ -61,4 +61,19 @@ public class RestaurantStatus {
 		this.waitTimeGroup = waitTimeGroup;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getClass().getName()).append(" \n{\n\tid: ").append(id)
+				.append("\n\toccupancy: ").append(occupancy)
+				.append("\n\twaitTime2: ").append(waitTime2)
+				.append("\n\twaitTimeGroup: ").append(waitTimeGroup)
+				.append("\n}");
+		return builder.toString();
+	}
+
+	
+
+	
+
 }

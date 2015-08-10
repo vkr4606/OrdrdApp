@@ -66,4 +66,30 @@ public class Location {
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getClass().getName()).append(" \n{\n\tid: ").append(id)
+				.append("\n\tname: ").append(name).append("\n\tcity: ")
+				.append(city).append("\n\tlattitude: ").append(lattitude)
+				.append("\n\tlongitude: ").append(longitude).append("\n}");
+		return builder.toString();
+	}
+	
+	
+	public String displayNestedObjects() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getClass().getName()).append(" \n\t{\n\t\tid: ")
+				.append(id).append("\n\t\tname: ").append(name)
+				.append("\n\t\tcity: ").append(city)
+				.append("\n\t\tlattitude: ").append(lattitude)
+				.append("\n\t\tlongitude: ").append(longitude).append("\n\t}");
+		return builder.toString();
+	}
+
+	
+
+	
+	
 }
