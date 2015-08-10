@@ -1,6 +1,5 @@
 package com.ordrd.model;
 
-import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -75,15 +74,15 @@ public class Restaurant {
 
 	@Column(name = "ADVANCE_BOOKING_FLAG")
 	private int advanceBookingFlag;
-	
-	@Column(name = "NONVEG_FLAG")
+
+	@Column(name = "NON_VEG_FLAG")
 	private int nonVegFlag;
-	
+
 	@Column(name = "ALCOHOL_FLAG")
 	private int alcoholFlag;
-	
+
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	@JoinColumn(name = "PRICE_RANGE")
+	@JoinColumn(name = "PRICE_RANGE_ID")
 	private PriceRange priceRange;
 
 	public int getId() {
@@ -222,46 +221,26 @@ public class Restaurant {
 		this.advanceBookingFlag = advanceBookingFlag;
 	}
 
-	
-
-	/**
-	 * @return the nonvegFlag
-	 */
 	public int getNonVegFlag() {
 		return nonVegFlag;
 	}
 
-	/**
-	 * @param nonvegFlag the nonvegFlag to set
-	 */
 	public void setNonVegFlag(int nonVegFlag) {
 		this.nonVegFlag = nonVegFlag;
 	}
 
-	/**
-	 * @return the alcoholFlag
-	 */
 	public int getAlcoholFlag() {
 		return alcoholFlag;
 	}
 
-	/**
-	 * @param alcoholFlag the alcoholFlag to set
-	 */
 	public void setAlcoholFlag(int alcoholFlag) {
 		this.alcoholFlag = alcoholFlag;
 	}
 
-	/**
-	 * @return the priceRange
-	 */
 	public PriceRange getPriceRange() {
 		return priceRange;
 	}
 
-	/**
-	 * @param priceRange the priceRange to set
-	 */
 	public void setPriceRange(PriceRange priceRange) {
 		this.priceRange = priceRange;
 	}
@@ -269,28 +248,20 @@ public class Restaurant {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(getClass().getName()).append(" \n{\n\tid: ").append(id)
-				.append("\n\tname: ").append(name).append("\n\tdescription: ")
-				.append(description).append("\n\tcontactNo: ")
-				.append(contactNo).append("\n\townerName: ").append(ownerName)
-				.append("\n\townerContactNo: ").append(ownerContactNo)
-				.append("\n\tmanagerName: ").append(managerName)
-				.append("\n\tmanagerContactNo: ").append(managerContactNo)
-				.append("\n\tlocation: ").append(location)
-				.append("\n\trestaurantStatus: ").append(restaurantStatus)
-				.append("\n\taddress: ").append(address)
-				.append("\n\tlattitude: ").append(lattitude)
-				.append("\n\tlongitude: ").append(longitude)
-				.append("\n\topeningTime: ").append(openingTime)
-				.append("\n\tclosingTime: ").append(closingTime)
-				.append("\n\tactiveFlag: ").append(activeFlag)
-				.append("\n\tadvanceBookingFlag: ").append(advanceBookingFlag)
-				.append("\n\tnonVegFlag: ").append(nonVegFlag)
-				.append("\n\talcoholFlag: ").append(alcoholFlag)
-				.append("\n\tpriceRange: ").append(priceRange).append("\n}");
+		builder.append("Restaurant {\n\tid=").append(id).append("\n\tname=").append(name)
+				.append("\n\tdescription=").append(description).append("\n\tcontactNo=")
+				.append(contactNo).append("\n\townerName=").append(ownerName)
+				.append("\n\townerContactNo=").append(ownerContactNo).append("\n\tmanagerName=")
+				.append(managerName).append("\n\tmanagerContactNo=").append(managerContactNo)
+				.append("\n\tlocation=").append(location).append("\n\trestaurantStatus=")
+				.append(restaurantStatus).append("\n\taddress=").append(address)
+				.append("\n\tlattitude=").append(lattitude).append("\n\tlongitude=")
+				.append(longitude).append("\n\topeningTime=").append(openingTime)
+				.append("\n\tclosingTime=").append(closingTime).append("\n\tactiveFlag=")
+				.append(activeFlag).append("\n\tadvanceBookingFlag=").append(advanceBookingFlag)
+				.append("\n\tnonVegFlag=").append(nonVegFlag).append("\n\talcoholFlag=")
+				.append(alcoholFlag).append("\n\tpriceRange=").append(priceRange).append("\n}");
 		return builder.toString();
 	}
 
-
-	
 }

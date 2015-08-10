@@ -18,8 +18,7 @@ public class CustomerService {
 
 	@Transactional
 	public Customer findById(int customerId) {
-		Customer customer = customerDAO.findById(customerId);
-		return customer;
+		return customerDAO.findById(customerId);
 	}
 
 	@Transactional

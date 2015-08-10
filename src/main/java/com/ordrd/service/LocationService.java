@@ -18,8 +18,7 @@ public class LocationService {
 
 	@Transactional
 	public Location findById(int locationId) {
-		Location location = locationDAO.findById(locationId);
-		return location;
+		return locationDAO.findById(locationId);
 	}
 
 	@Transactional

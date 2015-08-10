@@ -95,4 +95,15 @@ public class UserQuery {
 		this.lastUpdate = lastUpdate;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserQuery {\n\tid=").append(id).append("\n\tuser=").append(user)
+				.append("\n\tdescription=").append(description).append("\n\tstatus=")
+				.append(status).append("\n\tregistrationTime=").append(registrationTime)
+				.append("\n\ttype=").append(type).append("\n\tlastUpdate=").append(lastUpdate)
+				.append("\n}");
+		return builder.toString();
+	}
+
 }

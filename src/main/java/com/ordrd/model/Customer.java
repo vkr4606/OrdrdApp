@@ -17,7 +17,7 @@ public class Customer {
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -53,6 +53,14 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Customer {\n\tid=").append(id).append("\n\tname=").append(name)
+				.append("\n\tlocation=").append(location).append("\n}");
+		return builder.toString();
 	}
 
 }

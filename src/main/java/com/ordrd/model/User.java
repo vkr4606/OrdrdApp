@@ -168,4 +168,18 @@ public class User {
 		this.activeFlag = activeFlag;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User {\n\tid=").append(id).append("\n\tusername=").append(username)
+				.append("\n\tpassword=").append(password).append("\n\tfirstName=")
+				.append(firstName).append("\n\tlastName=").append(lastName)
+				.append("\n\tcontactNo=").append(contactNo).append("\n\temailId=").append(emailId)
+				.append("\n\tfacebookId=").append(facebookId).append("\n\tgoogleId=")
+				.append(googleId).append("\n\tprofilePic=").append(profilePic)
+				.append("\n\tlastLogin=").append(lastLogin).append("\n\trole=").append(role)
+				.append("\n\tactiveFlag=").append(activeFlag).append("\n}");
+		return builder.toString();
+	}
+
 }

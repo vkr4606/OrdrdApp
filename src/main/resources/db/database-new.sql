@@ -1,10 +1,10 @@
 set foreign_key_checks = 0;
 
 drop table if exists location;
+drop table if exists price_range;
 drop table if exists restaurant;
 drop table if exists restaurant_status;
 drop table if exists user;
-drop table if exists user_role;
 drop table if exists user_query;
 
 CREATE TABLE `location` (
@@ -13,6 +13,13 @@ CREATE TABLE `location` (
   `CITY` varchar(20) NOT NULL,
   `LATTITUDE` decimal(10,6) NOT NULL,
   `LONGITUDE` decimal(10,6) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `price_range` (
+  `ID` int(11) NOT NULL,
+  `CODE_VALUE` int(2) NOT NULL,
+  `CODE_DESCRIPTION` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32,12 +39,17 @@ CREATE TABLE `restaurant` (
   `LONGITUDE` decimal(10,6) NOT NULL,
   `OPENING_TIME` time(6) NOT NULL,
   `CLOSING_TIME` time(6) NOT NULL,
-  `ACTIVE_FLAG` tinyint(1) NOT NULL DEFAULT 1,
+  `ACTIVE_FLAG` tinyint(1) NOT NULL DEFAULT '1',
   `ADVANCE_BOOKING_FLAG` tinyint(1) NOT NULL,
+  `NON_VEG_FLAG` tinyint(1) NOT NULL,
+  `ALCOHOL_FLAG` tinyint(1) NOT NULL,
+  `PRICE_RANGE_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `LOCATION_ID_FK_idx` (`LOCATION_ID`),
   KEY `RESTAURANT_RESTAURANT_STATUS_ID_FK_idx` (`RESTAURANT_STATUS_ID`),
+  KEY `RESTAURANT_PRICE_RANGE_ID_FK_idx` (`PRICE_RANGE_ID`),
   CONSTRAINT `RESTAURANT_LOCATION_ID_FK` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `RESTAURANT_PRICE_RANGE_ID_FK` FOREIGN KEY (`PRICE_RANGE_ID`) REFERENCES `price_range` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `RESTAURANT_RESTAURANT_STATUS_ID_FK` FOREIGN KEY (`RESTAURANT_STATUS_ID`) REFERENCES `restaurant_status` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

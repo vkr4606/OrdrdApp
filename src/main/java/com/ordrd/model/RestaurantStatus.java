@@ -6,27 +6,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="RESTAURANT_STATUS")
+@Table(name = "RESTAURANT_STATUS")
 public class RestaurantStatus {
-	
+
 	@Id
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
-	
+
 	/**
-	 * Used to depict % Occupancy of a particular Restaurant
-	 * Percent Range of 10 (0-100)
+	 * Used to depict % Occupancy of a particular Restaurant Percent Range of 10
+	 * (0-100)
 	 */
-	@Column(name="OCCUPANCY")
+	@Column(name = "OCCUPANCY")
 	private int occupancy;
-	
+
 	/**
 	 * Wait Time is defined in Range of 10 minutes
 	 */
-	@Column(name="WAIT_TIME_2")
+	@Column(name = "WAIT_TIME_2")
 	private int waitTime2;
-	
-	@Column(name="WAIT_TIME_GROUP")
+
+	@Column(name = "WAIT_TIME_GROUP")
 	private int waitTimeGroup;
 
 	public int getId() {
@@ -64,16 +64,10 @@ public class RestaurantStatus {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(getClass().getName()).append(" \n{\n\tid: ").append(id)
-				.append("\n\toccupancy: ").append(occupancy)
-				.append("\n\twaitTime2: ").append(waitTime2)
-				.append("\n\twaitTimeGroup: ").append(waitTimeGroup)
-				.append("\n}");
+		builder.append("RestaurantStatus {\n\tid=").append(id).append("\n\toccupancy=")
+				.append(occupancy).append("\n\twaitTime2=").append(waitTime2)
+				.append("\n\twaitTimeGroup=").append(waitTimeGroup).append("\n}");
 		return builder.toString();
 	}
-
-	
-
-	
 
 }

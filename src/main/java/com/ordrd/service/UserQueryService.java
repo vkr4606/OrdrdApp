@@ -12,14 +12,13 @@ import com.ordrd.model.UserQuery;
 
 @Service
 public class UserQueryService {
-	
+
 	@Autowired
 	private UserQueryDAO userQueryDAO;
 
 	@Transactional
 	public UserQuery findById(int userQueryId) {
-		UserQuery userQuery = userQueryDAO.findById(userQueryId);
-		return userQuery;
+		return userQueryDAO.findById(userQueryId);
 	}
 
 	@Transactional

@@ -18,8 +18,7 @@ public class RestaurantStatusService {
 
 	@Transactional
 	public RestaurantStatus findById(int restaurantId) {
-		RestaurantStatus restaurantStatus = restaurantStatusDAO.findById(restaurantId);
-		return restaurantStatus;
+		return restaurantStatusDAO.findById(restaurantId);
 	}
 
 	@Transactional
