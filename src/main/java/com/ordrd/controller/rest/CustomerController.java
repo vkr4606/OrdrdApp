@@ -1,4 +1,4 @@
-package com.ordrd.controller;
+package com.ordrd.controller.rest;
 
 import java.io.FileInputStream;
 import java.io.IOException;

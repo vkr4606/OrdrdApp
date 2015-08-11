@@ -1,4 +1,4 @@
-package com.ordrd.controller;
+package com.ordrd.controller.rest;
 
 import java.net.URI;
 import java.util.List;
@@ -34,7 +34,7 @@ public class UserController {
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> getAllUser() {
+	public ResponseEntity<List<User>> getUserList() {
 		List<User> userList = userService.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(userList);
 	}

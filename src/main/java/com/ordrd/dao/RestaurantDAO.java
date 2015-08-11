@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -43,7 +43,6 @@ public class RestaurantDAO {
 		entityManager.remove(restaurant);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Restaurant> getRestaurantList(RestaurantFilter restaurantFilter) {
 
 		String query = "select p from Restaurant p where p.activeFlag =:activeFlag";
@@ -62,7 +61,7 @@ public class RestaurantDAO {
 			query = query + " order by p.priceRange.codeValue asc";
 		}
 
-		Query queryString = entityManager.createQuery(query);
+		TypedQuery<Restaurant> queryString = entityManager.createQuery(query, Restaurant.class);
 
 		queryString.setParameter("activeFlag", 1);
 		if (restaurantFilter.getNonVegFlag() != 0) {

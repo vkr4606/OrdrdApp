@@ -1,4 +1,4 @@
-package com.ordrd.controller;
+package com.ordrd.controller.web;
 
 import java.util.List;
 
