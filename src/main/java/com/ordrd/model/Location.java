@@ -1,5 +1,7 @@
 package com.ordrd.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +24,10 @@ public class Location {
 	private String city;
 
 	@Column(name = "LATTITUDE")
-	private Float lattitude;
+	private BigDecimal lattitude;
 
 	@Column(name = "LONGITUDE")
-	private Float longitude;
+	private BigDecimal longitude;
 
 	public int getId() {
 		return id;
@@ -51,19 +53,19 @@ public class Location {
 		this.city = city;
 	}
 
-	public Float getLattitude() {
+	public BigDecimal getLattitude() {
 		return lattitude;
 	}
 
-	public void setLattitude(Float lattitude) {
+	public void setLattitude(BigDecimal lattitude) {
 		this.lattitude = lattitude;
 	}
 
-	public Float getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 

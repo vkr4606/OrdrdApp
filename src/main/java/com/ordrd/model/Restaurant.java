@@ -1,5 +1,6 @@
 package com.ordrd.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -56,10 +57,10 @@ public class Restaurant {
 	private String address;
 
 	@Column(name = "LATTITUDE")
-	private Float lattitude;
+	private BigDecimal lattitude;
 
 	@Column(name = "LONGITUDE")
-	private Float longitude;
+	private BigDecimal longitude;
 
 	@Column(name = "OPENING_TIME")
 	@Temporal(TemporalType.TIME)
@@ -173,19 +174,19 @@ public class Restaurant {
 		this.address = address;
 	}
 
-	public Float getLattitude() {
+	public BigDecimal getLattitude() {
 		return lattitude;
 	}
 
-	public void setLattitude(Float lattitude) {
+	public void setLattitude(BigDecimal lattitude) {
 		this.lattitude = lattitude;
 	}
 
-	public Float getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 

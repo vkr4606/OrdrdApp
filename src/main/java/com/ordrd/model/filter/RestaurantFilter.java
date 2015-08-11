@@ -1,5 +1,6 @@
 package com.ordrd.model.filter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class RestaurantFilter {
@@ -13,8 +14,10 @@ public class RestaurantFilter {
 	private int alcoholFLag;
 	private boolean priceSort;
 	private List<Integer> locationIds;
-	private Float lattitude;
-	private Float longitude;
+	private BigDecimal lattitude;
+	private BigDecimal longitude;
+	private int pageNo;
+	private int recordsPerPage;
 
 	public int getNonVegFlag() {
 		return nonVegFlag;
@@ -48,30 +51,47 @@ public class RestaurantFilter {
 		this.locationIds = locationIds;
 	}
 
-	public Float getLattitude() {
+	public BigDecimal getLattitude() {
 		return lattitude;
 	}
 
-	public void setLattitude(Float lattitude) {
+	public void setLattitude(BigDecimal lattitude) {
 		this.lattitude = lattitude;
 	}
 
-	public Float getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
+	}
+
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public int getRecordsPerPage() {
+		return recordsPerPage;
+	}
+
+	public void setRecordsPerPage(int recordsPerPage) {
+		this.recordsPerPage = recordsPerPage;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RestaurantFilter {\n\tnonVegFlag=").append(nonVegFlag)
-				.append("\n\talcoholFLag=").append(alcoholFLag).append("\n\tpriceSort=")
-				.append(priceSort).append("\n\tlocationIds=").append(locationIds)
-				.append("\n\tlattitude=").append(lattitude).append("\n\tlongitude=")
-				.append(longitude).append("\n}");
+		builder.append(getClass().getName()).append(" \n\t{\n\t\tnonVegFlag: ").append(nonVegFlag)
+				.append("\n\t\talcoholFLag: ").append(alcoholFLag).append("\n\t\tpriceSort: ")
+				.append(priceSort).append("\n\t\tlocationIds: ").append(locationIds)
+				.append("\n\t\tlattitude: ").append(lattitude).append("\n\t\tlongitude: ")
+				.append(longitude).append("\n\t\tpageNo: ").append(pageNo)
+				.append("\n\t\trecordsPerPage: ").append(recordsPerPage).append("\n\t}");
 		return builder.toString();
 	}
 

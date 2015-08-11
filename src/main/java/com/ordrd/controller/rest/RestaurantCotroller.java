@@ -1,5 +1,6 @@
 package com.ordrd.controller.rest;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
@@ -39,9 +40,10 @@ public class RestaurantCotroller {
 			@RequestParam(value = "nonVg", defaultValue = "0") Integer nonVegFlag,
 			@RequestParam(value = "alchl", defaultValue = "0") Integer alcoholFLag,
 			@RequestParam(value = "prcSrt", defaultValue = "false") Boolean priceSort,
-			@RequestParam(value = "lat", required = false) Float lattitude,
-			@RequestParam(value = "lng", required = false) Float longitude,
-			@RequestParam(value = "lctnIds", required = false) List<Integer> locationIds) {
+			@RequestParam(value = "lat", required = false) BigDecimal lattitude,
+			@RequestParam(value = "lng", required = false) BigDecimal longitude,
+			@RequestParam(value = "lcnIds", required = false) List<Integer> locationIds,
+			@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo) {
 
 		RestaurantFilter restaurantFilter = new RestaurantFilter();
 		restaurantFilter.setNonVegFlag(nonVegFlag);
@@ -50,6 +52,8 @@ public class RestaurantCotroller {
 		restaurantFilter.setLattitude(lattitude);
 		restaurantFilter.setLongitude(longitude);
 		restaurantFilter.setLocationIds(locationIds);
+		restaurantFilter.setPageNo(pageNo);
+		restaurantFilter.setRecordsPerPage(5);
 
 		List<Restaurant> restaurantList = restaurantService.getRestaurantList(restaurantFilter);
 		return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
@@ -90,6 +94,22 @@ public class RestaurantCotroller {
 			@PathVariable(value = "restaurantId") String restaurantId) {
 		restaurantService.delete(Integer.parseInt(restaurantId));
 		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+
+	public float calculateDistance(Float lat1, Float lng1, Float lat2, Float lng2) {
+		double theta = lng1 - lng2;
+		double theta_rad = (theta * Math.PI / 180.0);
+
+		double lat1_rad = (lat1 * Math.PI / 180.0);
+		double lat2_rad = (lat2 * Math.PI / 180.0);
+
+		double distance = Math.sin(lat1_rad) * Math.sin(lat2_rad) + Math.cos(lat1_rad)
+				* Math.cos(lat2_rad) * Math.cos(theta_rad);
+
+		distance = Math.acos(distance);
+		distance = (distance * 180.0 / Math.PI);
+		distance = distance * 60 * 1.1515 * 1.609344;
+		return new Float(distance);
 	}
 
 }

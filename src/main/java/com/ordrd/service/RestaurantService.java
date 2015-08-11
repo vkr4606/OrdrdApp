@@ -48,4 +48,9 @@ public class RestaurantService {
 		return restaurantDAO.getRestaurantList(restaurantFilter);
 	}
 
+	@Transactional
+	public Integer getTotalRecord(RestaurantFilter restaurantFilter) {
+		return restaurantDAO.getTotalRecord(restaurantFilter);
+	}
+
 }
