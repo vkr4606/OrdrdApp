@@ -49,7 +49,7 @@ public class RestaurantDAO {
 
 	public long getTotalRecord(RestaurantFilter restaurantFilter) {
 		StringBuffer query = new StringBuffer(
-				"select count(p.id) from Restaurant p where p.activeFlag =:activeFlag");
+				"select count(p.id) from Restaurant p where 1=1");
 
 		if (restaurantFilter.getActiveFlag() != 0) {
 			query.append(" and p.activeFlag =:activeFlag");
@@ -89,7 +89,7 @@ public class RestaurantDAO {
 
 		int firstRecord = (restaurantFilter.getPageNo() - 1) * restaurantFilter.getRecordsPerPage();
 		StringBuffer query = new StringBuffer(
-				"select p from Restaurant p where p.activeFlag =:activeFlag");
+				"select p from Restaurant p where 1=1 ");
 
 		if (restaurantFilter.getActiveFlag() != 0) {
 			query.append(" and p.activeFlag =:activeFlag");
