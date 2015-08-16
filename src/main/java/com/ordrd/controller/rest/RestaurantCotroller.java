@@ -2,6 +2,7 @@ package com.ordrd.controller.rest;
 
 import java.math.BigDecimal;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -111,19 +112,26 @@ public class RestaurantCotroller {
 			restaurantFilter.setPageNo(pageNo);
 			restaurantFilter.setRecordsPerPage(pageSize);
 
+			List<Integer> locationIdsTemp = new ArrayList<Integer>();
 			List<LocationAdmin> locationAdminList = locationAdminService
 					.findLocationsByUserName(userName);
 
 			for (LocationAdmin tempLocationAdmin : locationAdminList) {
-				locationIds.add(tempLocationAdmin.getLocationId());
+				locationIdsTemp.add(tempLocationAdmin.getLocationId());
 			}
-			restaurantFilter.setLocationIds(locationIds);
-			long totalRecord = restaurantService.getTotalRecord(restaurantFilter);
-			restaurantList = restaurantService.getRestaurantList(restaurantFilter);
+			
+			if(locationIdsTemp != null && locationIdsTemp.size() > 0) {
+				restaurantFilter.setLocationIds(locationIdsTemp);
+				long totalRecord = restaurantService.getTotalRecord(restaurantFilter);
+				restaurantList = restaurantService.getRestaurantList(restaurantFilter);
 
-			returnObject.setTotalCount(totalRecord);
-			returnObject.setModelList(restaurantList);
-		}
+				returnObject.setTotalCount(totalRecord);
+				returnObject.setModelList(restaurantList);
+			} else {
+				//Return Empty Restaurant List
+				returnObject.setTotalCount(0);
+			}
+					}
 
 		return ResponseEntity.status(HttpStatus.OK).body(returnObject);
 	}
