@@ -31,19 +31,19 @@ public class Restaurant {
 	private String description;
 
 	@Column(name = "CONTACT_NO")
-	private int contactNo;
+	private String contactNo;
 
 	@Column(name = "OWNER_NAME")
 	private String ownerName;
 
 	@Column(name = "OWNER_CONTACT_NO")
-	private int ownerContactNo;
+	private String ownerContactNo;
 
 	@Column(name = "MANAGER_NAME")
 	private String managerName;
 
 	@Column(name = "MANAGER_CONTACT_NO")
-	private int managerContactNo;
+	private String managerContactNo;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "LOCATION_ID")
@@ -83,6 +83,10 @@ public class Restaurant {
 	private int alcoholFlag;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	private User user;
+
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PRICE_RANGE_ID")
 	private PriceRange priceRange;
 
@@ -110,11 +114,11 @@ public class Restaurant {
 		this.description = description;
 	}
 
-	public int getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(int contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
@@ -126,11 +130,11 @@ public class Restaurant {
 		this.ownerName = ownerName;
 	}
 
-	public int getOwnerContactNo() {
+	public String getOwnerContactNo() {
 		return ownerContactNo;
 	}
 
-	public void setOwnerContactNo(int ownerContactNo) {
+	public void setOwnerContactNo(String ownerContactNo) {
 		this.ownerContactNo = ownerContactNo;
 	}
 
@@ -142,11 +146,11 @@ public class Restaurant {
 		this.managerName = managerName;
 	}
 
-	public int getManagerContactNo() {
+	public String getManagerContactNo() {
 		return managerContactNo;
 	}
 
-	public void setManagerContactNo(int managerContactNo) {
+	public void setManagerContactNo(String managerContactNo) {
 		this.managerContactNo = managerContactNo;
 	}
 
@@ -238,6 +242,14 @@ public class Restaurant {
 		this.alcoholFlag = alcoholFlag;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public PriceRange getPriceRange() {
 		return priceRange;
 	}
@@ -249,19 +261,21 @@ public class Restaurant {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Restaurant {\n\tid=").append(id).append("\n\tname=").append(name)
-				.append("\n\tdescription=").append(description).append("\n\tcontactNo=")
-				.append(contactNo).append("\n\townerName=").append(ownerName)
-				.append("\n\townerContactNo=").append(ownerContactNo).append("\n\tmanagerName=")
-				.append(managerName).append("\n\tmanagerContactNo=").append(managerContactNo)
-				.append("\n\tlocation=").append(location).append("\n\trestaurantStatus=")
-				.append(restaurantStatus).append("\n\taddress=").append(address)
-				.append("\n\tlattitude=").append(lattitude).append("\n\tlongitude=")
-				.append(longitude).append("\n\topeningTime=").append(openingTime)
-				.append("\n\tclosingTime=").append(closingTime).append("\n\tactiveFlag=")
-				.append(activeFlag).append("\n\tadvanceBookingFlag=").append(advanceBookingFlag)
-				.append("\n\tnonVegFlag=").append(nonVegFlag).append("\n\talcoholFlag=")
-				.append(alcoholFlag).append("\n\tpriceRange=").append(priceRange).append("\n}");
+		builder.append(getClass().getName()).append(" \n\t{\n\t\tid: ").append(id)
+				.append("\n\t\tname: ").append(name).append("\n\t\tdescription: ")
+				.append(description).append("\n\t\tcontactNo: ").append(contactNo)
+				.append("\n\t\townerName: ").append(ownerName).append("\n\t\townerContactNo: ")
+				.append(ownerContactNo).append("\n\t\tmanagerName: ").append(managerName)
+				.append("\n\t\tmanagerContactNo: ").append(managerContactNo)
+				.append("\n\t\tlocation: ").append(location).append("\n\t\trestaurantStatus: ")
+				.append(restaurantStatus).append("\n\t\taddress: ").append(address)
+				.append("\n\t\tlattitude: ").append(lattitude).append("\n\t\tlongitude: ")
+				.append(longitude).append("\n\t\topeningTime: ").append(openingTime)
+				.append("\n\t\tclosingTime: ").append(closingTime).append("\n\t\tactiveFlag: ")
+				.append(activeFlag).append("\n\t\tadvanceBookingFlag: ").append(advanceBookingFlag)
+				.append("\n\t\tnonVegFlag: ").append(nonVegFlag).append("\n\t\talcoholFlag: ")
+				.append(alcoholFlag).append("\n\t\tuser: ").append(user)
+				.append("\n\t\tpriceRange: ").append(priceRange).append("\n\t}");
 		return builder.toString();
 	}
 
