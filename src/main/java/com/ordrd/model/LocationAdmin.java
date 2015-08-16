@@ -16,7 +16,7 @@ public class LocationAdmin {
 	private int id;
 
 	@Column(name = "USER_NAME")
-	private int userName;
+	private String userName;
 
 	@Column(name = "LOCATION_ID")
 	private int locationId;
@@ -29,11 +29,11 @@ public class LocationAdmin {
 		this.id = id;
 	}
 
-	public int getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUserName(int userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
