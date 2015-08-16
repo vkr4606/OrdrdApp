@@ -17,6 +17,12 @@ public class RestaurantService {
 	@Autowired
 	private RestaurantDAO restaurantDAO;
 
+	@Autowired
+	private LocationService locationService;
+
+	@Autowired
+	private RestaurantStatusService resStatusService;
+
 	@Transactional
 	public Restaurant findById(int restaurantId) {
 		return restaurantDAO.findById(restaurantId);
@@ -49,8 +55,13 @@ public class RestaurantService {
 	}
 
 	@Transactional
-	public Integer getTotalRecord(RestaurantFilter restaurantFilter) {
+	public long getTotalRecord(RestaurantFilter restaurantFilter) {
 		return restaurantDAO.getTotalRecord(restaurantFilter);
+	}
+
+	@Transactional
+	public List<Restaurant> getUserSpecificRestaurant(String userName) {
+		return restaurantDAO.getUserSpecificRestaurant(userName);
 	}
 
 }

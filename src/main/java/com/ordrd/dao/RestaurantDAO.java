@@ -1,12 +1,15 @@
 package com.ordrd.dao;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -44,31 +47,29 @@ public class RestaurantDAO {
 		entityManager.remove(restaurant);
 	}
 
-	public Integer getTotalRecord(RestaurantFilter restaurantFilter) {
-		// CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		// CriteriaQuery<Long> query = cb.createQuery(Long.class);
-		// Root<Restaurant> root = query.from(Restaurant.class);
-		// query.select(cb.count(root));
-		// Long count = entityManager.createQuery(query).getSingleResult();
-		// return count.intValue();
-		String query = "select count(p.id) from Restaurant p where p.activeFlag =:activeFlag";
+	public long getTotalRecord(RestaurantFilter restaurantFilter) {
+		StringBuffer query = new StringBuffer(
+				"select count(p.id) from Restaurant p where p.activeFlag =:activeFlag");
 
+		if (restaurantFilter.getActiveFlag() != 0) {
+			query.append(" and p.activeFlag =:activeFlag");
+		}
 		if (restaurantFilter.getNonVegFlag() != 0) {
-			query = query + " and p.nonVegFlag =:nonVegFlag";
+			query.append(" and p.nonVegFlag =:nonVegFlag");
 		}
 		if (restaurantFilter.getAlcoholFLag() != 0) {
-			query = query + " and p.alcoholFlag =:alcoholFlag";
+			query.append(" and p.alcoholFlag =:alcoholFlag");
 		}
 		if (restaurantFilter.getLocationIds() != null
 				&& !restaurantFilter.getLocationIds().isEmpty()) {
-			query = query + " and p.location.id in (:ids)";
+			query.append(" and p.location.id in (:ids)");
 		}
 
-		Query queryString = entityManager.createQuery(query);
-		queryString.setParameter("lattitude", restaurantFilter.getLattitude());
-		queryString.setParameter("longitude", restaurantFilter.getLongitude());
-		queryString.setParameter("pi", new Float(Math.PI));
-		queryString.setParameter("activeFlag", 1);
+		TypedQuery<Long> queryString = entityManager.createQuery(query.toString(), Long.class);
+
+		if (restaurantFilter.getActiveFlag() != 0) {
+			queryString.setParameter("activeFlag", 1);
+		}
 		if (restaurantFilter.getNonVegFlag() != 0) {
 			queryString.setParameter("nonVegFlag", restaurantFilter.getNonVegFlag());
 		}
@@ -80,50 +81,52 @@ public class RestaurantDAO {
 			queryString.setParameter("ids", restaurantFilter.getLocationIds());
 		}
 
-		return (Integer) queryString.getSingleResult();
+		return queryString.getSingleResult();
 
 	}
 
 	public List<Restaurant> getRestaurantList(RestaurantFilter restaurantFilter) {
 
 		int firstRecord = (restaurantFilter.getPageNo() - 1) * restaurantFilter.getRecordsPerPage();
-		String query = "select p from Restaurant p where p.activeFlag =:activeFlag";
+		StringBuffer query = new StringBuffer(
+				"select p from Restaurant p where p.activeFlag =:activeFlag");
 
+		if (restaurantFilter.getActiveFlag() != 0) {
+			query.append(" and p.activeFlag =:activeFlag");
+		}
 		if (restaurantFilter.getNonVegFlag() != 0) {
-			query = query + " and p.nonVegFlag =:nonVegFlag";
+			query.append(" and p.nonVegFlag =:nonVegFlag");
 		}
 		if (restaurantFilter.getAlcoholFLag() != 0) {
-			query = query + " and p.alcoholFlag =:alcoholFlag";
+			query.append(" and p.alcoholFlag =:alcoholFlag");
 		}
 		if (restaurantFilter.getLocationIds() != null
 				&& !restaurantFilter.getLocationIds().isEmpty()) {
-			query = query + " and p.location.id in (:ids)";
+			query.append(" and p.location.id in (:ids)");
 		}
 
-		if(restaurantFilter.isPriceSort() || (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null)){
-			query = query + " order by";
+		if (restaurantFilter.isPriceSort()
+				|| (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null)) {
+			query.append(" order by");
 			if (restaurantFilter.isPriceSort()) {
-				query = query + " p.priceRange.codeValue";
+				query.append(" p.priceRange.codeValue");
 			}
-			if(restaurantFilter.isPriceSort() && (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null)){
-				query = query + ",";
+			if (restaurantFilter.isPriceSort()
+					&& (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null)) {
+				query.append(",");
 			}
-			if(restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null){
-				query = query
-						+ "(acos((sin(p.lattitude*:pi/180)*sin(:lattitude*:pi/180))+"
-						+ "((cos(p.lattitude*:pi/180)*cos(:lattitude*:pi/180))*(cos((p.longitude-:longitude)*:pi/180))))*180/:pi)*60*1.1515*1.609344";
-			}	
+			if (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null) {
+				query.append("(acos((sin(p.lattitude*:pi/180)*sin(:lattitude*:pi/180)) + ")
+						.append("((cos(p.lattitude*:pi/180)*cos(:lattitude*:pi/180))*(cos((p.longitude-:longitude)*:pi/180))))*180/:pi)*60*1.1515*1.609344");
+			}
 		}
-		
-		TypedQuery<Restaurant> queryString = entityManager.createQuery(query, Restaurant.class);
-		
-		if(restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null){
-			queryString.setParameter("lattitude", restaurantFilter.getLattitude());
-			queryString.setParameter("longitude", restaurantFilter.getLongitude());
-			queryString.setParameter("pi", new Float(Math.PI));
+
+		TypedQuery<Restaurant> queryString = entityManager.createQuery(query.toString(),
+				Restaurant.class);
+
+		if (restaurantFilter.getActiveFlag() != 0) {
+			queryString.setParameter("activeFlag", 1);
 		}
-		
-		queryString.setParameter("activeFlag", 1);
 		if (restaurantFilter.getNonVegFlag() != 0) {
 			queryString.setParameter("nonVegFlag", restaurantFilter.getNonVegFlag());
 		}
@@ -134,8 +137,34 @@ public class RestaurantDAO {
 				&& !restaurantFilter.getLocationIds().isEmpty()) {
 			queryString.setParameter("ids", restaurantFilter.getLocationIds());
 		}
+
+		if (restaurantFilter.getLattitude() != null && restaurantFilter.getLongitude() != null) {
+			queryString.setParameter("lattitude", restaurantFilter.getLattitude());
+			queryString.setParameter("longitude", restaurantFilter.getLongitude());
+			queryString.setParameter("pi", new BigDecimal(Math.PI));
+		}
 		queryString.setFirstResult(firstRecord);
 		queryString.setMaxResults(restaurantFilter.getRecordsPerPage());
 		return queryString.getResultList();
+	}
+
+	public List<Restaurant> getUserSpecificRestaurant(String userName) {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Restaurant> cq = cb.createQuery(Restaurant.class);
+		Root<Restaurant> r = cq.from(Restaurant.class);
+		List<Predicate> predicates = new ArrayList<Predicate>();
+
+		Predicate userNamePredicate;
+
+		if (userName != null) {
+			userNamePredicate = cb.equal(r.get("userName"), userName);
+			predicates.add(userNamePredicate);
+		}
+
+		cq.where(predicates.toArray(new Predicate[] {}));
+		TypedQuery<Restaurant> q = entityManager.createQuery(cq);
+		List<Restaurant> result = q.getResultList();
+
+		return result;
 	}
 }

@@ -82,9 +82,8 @@ public class Restaurant {
 	@Column(name = "ALCOHOL_FLAG")
 	private int alcoholFlag;
 
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
-	private User user;
+	@Column(name = "USER_NAME")
+	private User userName;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PRICE_RANGE_ID")
@@ -242,12 +241,12 @@ public class Restaurant {
 		this.alcoholFlag = alcoholFlag;
 	}
 
-	public User getUser() {
-		return user;
+	public User getUserName() {
+		return userName;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserName(User userName) {
+		this.userName = userName;
 	}
 
 	public PriceRange getPriceRange() {
@@ -274,7 +273,7 @@ public class Restaurant {
 				.append("\n\t\tclosingTime: ").append(closingTime).append("\n\t\tactiveFlag: ")
 				.append(activeFlag).append("\n\t\tadvanceBookingFlag: ").append(advanceBookingFlag)
 				.append("\n\t\tnonVegFlag: ").append(nonVegFlag).append("\n\t\talcoholFlag: ")
-				.append(alcoholFlag).append("\n\t\tuser: ").append(user)
+				.append(alcoholFlag).append("\n\t\tuserName: ").append(userName)
 				.append("\n\t\tpriceRange: ").append(priceRange).append("\n\t}");
 		return builder.toString();
 	}
