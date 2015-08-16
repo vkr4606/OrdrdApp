@@ -65,7 +65,7 @@ public class RestaurantCotroller {
 
 		Iterator<? extends GrantedAuthority> authorities = authentication.getAuthorities()
 				.iterator();
-		if (!authorities.hasNext()) {
+		if (authorities.hasNext()) {
 			restaurantFilter.setUserRole(authorities.next().getAuthority());
 		}
 
