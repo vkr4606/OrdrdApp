@@ -83,7 +83,7 @@ public class Restaurant {
 	private int alcoholFlag;
 
 	@Column(name = "USER_NAME")
-	private User userName;
+	private String userName;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PRICE_RANGE_ID")
@@ -241,11 +241,11 @@ public class Restaurant {
 		this.alcoholFlag = alcoholFlag;
 	}
 
-	public User getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUserName(User userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
