@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -38,8 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.dataSource(dataSource)
 				.usersByUsernameQuery(
 						"select username, password, active_flag from user where username = ? ")
-				.authoritiesByUsernameQuery(
-						"select username, role from user where username = ? ");
+				.authoritiesByUsernameQuery("select username, role from user where username = ? ");
 	}
 
 	@Bean

@@ -1,14 +1,14 @@
 set foreign_key_checks = 0;
 
-drop table if exists location;
-drop table if exists location_admin;
-drop table if exists price_range;
-drop table if exists restaurant;
-drop table if exists restaurant_status;
-drop table if exists user;
-drop table if exists user_query;
+drop table if exists LOCATION;
+drop table if exists LOCATION_ADMIN;
+drop table if exists PRICE_RANGE;
+drop table if exists RESTAURANT;
+drop table if exists RESTAURANT_STATUS;
+drop table if exists USER;
+drop table if exists USER_QUERY;
 
-CREATE TABLE `location` (
+CREATE TABLE `LOCATION` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(45) NOT NULL,
   `CITY` varchar(20) NOT NULL,
@@ -19,20 +19,19 @@ CREATE TABLE `location` (
 
 CREATE TABLE `LOCATION_ADMIN` (
   `ID` int(11) NOT NULL,
-  `USER_NAME` varchar(20) NOT NULL,
+  `USER_NAME` varchar(45) NOT NULL,
   `LOCATION_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-CREATE TABLE `price_range` (
+CREATE TABLE `PRICE_RANGE` (
   `ID` int(11) NOT NULL,
   `CODE_VALUE` int(2) NOT NULL,
   `CODE_DESCRIPTION` varchar(45) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `restaurant` (
+CREATE TABLE `RESTAURANT` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(45) NOT NULL,
   `DESCRIPTION` varchar(100) NOT NULL,
@@ -47,12 +46,12 @@ CREATE TABLE `restaurant` (
   `LATTITUDE` decimal(10,6) NOT NULL,
   `LONGITUDE` decimal(10,6) NOT NULL,
   `OPENING_TIME` time DEFAULT NULL,
-  `closing_time` time DEFAULT NULL,
-  `active_flag` int(11) DEFAULT NULL,
-  `advance_booking_flag` int(11) DEFAULT NULL,
+  `CLOSING_TIME` time DEFAULT NULL,
+  `ACTIVE_FLAG` int(11) DEFAULT NULL,
+  `ADVANCE_BOOKING_FLAG` int(11) DEFAULT NULL,
   `NON_VEG_FLAG` int(11) NOT NULL,
   `ALCOHOL_FLAG` int(2) DEFAULT '0',
-  `USER_NAME` varchar(20) NOT NULL,
+  `USER_NAME` varchar(45) NOT NULL,
   `PRICE_RANGE_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `LOCATION_ID_FK_idx` (`LOCATION_ID`),
@@ -60,11 +59,11 @@ CREATE TABLE `restaurant` (
   KEY `RESTAURANT_PRICE_RANGE_FK_idx` (`PRICE_RANGE_ID`),
   KEY `RESTAURANT_USER_ID_FK_idx` (`USER_NAME`),
   CONSTRAINT `RESTAURANT_LOCATION_ID_FK` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `RESTAURANT_PRICE_RANGE_FK` FOREIGN KEY (`PRICE_RANGE_ID`) REFERENCES `PRICE_RANGE` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `RESTAURANT_PRICE_RANGE_FK` FOREIGN KEY (`PRICE_RANGE_ID`) REFERENCES `price_range` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `RESTAURANT_RESTAURANT_STATUS_ID_FK` FOREIGN KEY (`RESTAURANT_STATUS_ID`) REFERENCES `restaurant_status` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `restaurant_status` (
+CREATE TABLE `RESTAURANT_STATUS` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `OCCUPANCY` int(11) DEFAULT NULL,
   `WAIT_TIME_2` int(11) DEFAULT NULL,
@@ -72,7 +71,7 @@ CREATE TABLE `restaurant_status` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `user` (
+CREATE TABLE `USER` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(45) NOT NULL,
   `PASSWORD` varchar(20) NOT NULL,
@@ -89,7 +88,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `user_query` (
+CREATE TABLE `USER_QUERY` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_ID` int(11) NOT NULL,
   `DESCRIPTION` varchar(1024) NOT NULL,
