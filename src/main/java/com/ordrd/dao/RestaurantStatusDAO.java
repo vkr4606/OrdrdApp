@@ -18,11 +18,11 @@ public class RestaurantStatusDAO {
 	private EntityManager entityManager;
 
 	public List<RestaurantStatus> findAll() {
-		CriteriaQuery<RestaurantStatus> createQuery = entityManager.getCriteriaBuilder()
+		CriteriaQuery<RestaurantStatus> criteriaQuery = entityManager.getCriteriaBuilder()
 				.createQuery(RestaurantStatus.class);
-		Root<RestaurantStatus> from = createQuery.from(RestaurantStatus.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<RestaurantStatus> from = criteriaQuery.from(RestaurantStatus.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public RestaurantStatus findById(int restaurantId) {

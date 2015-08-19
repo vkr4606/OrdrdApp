@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ordrd.dao.LocationDAO;
 import com.ordrd.model.Location;
+import com.ordrd.model.filter.LocationFilter;
 
 @Service
 public class LocationService {
@@ -24,6 +25,11 @@ public class LocationService {
 	@Transactional
 	public List<Location> findAll() {
 		return locationDAO.findAll();
+	}
+
+	@Transactional
+	public List<Location> getLocationList(LocationFilter locationFilter) {
+		return locationDAO.findByFilter(locationFilter);
 	}
 
 	@Transactional

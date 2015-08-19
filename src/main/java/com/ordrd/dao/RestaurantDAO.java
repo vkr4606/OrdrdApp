@@ -24,11 +24,11 @@ public class RestaurantDAO {
 	private EntityManager entityManager;
 
 	public List<Restaurant> findAll() {
-		CriteriaQuery<Restaurant> createQuery = entityManager.getCriteriaBuilder().createQuery(
+		CriteriaQuery<Restaurant> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(
 				Restaurant.class);
-		Root<Restaurant> from = createQuery.from(Restaurant.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<Restaurant> from = criteriaQuery.from(Restaurant.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public Restaurant findById(int restaurantId) {
@@ -48,8 +48,7 @@ public class RestaurantDAO {
 	}
 
 	public long getTotalRecord(RestaurantFilter restaurantFilter) {
-		StringBuffer query = new StringBuffer(
-				"select count(p.id) from Restaurant p where 1=1");
+		StringBuffer query = new StringBuffer("select count(p.id) from Restaurant p where 1=1");
 
 		if (restaurantFilter.getActiveFlag() != 0) {
 			query.append(" and p.activeFlag =:activeFlag");
@@ -88,8 +87,7 @@ public class RestaurantDAO {
 	public List<Restaurant> getRestaurantList(RestaurantFilter restaurantFilter) {
 
 		int firstRecord = (restaurantFilter.getPageNo() - 1) * restaurantFilter.getRecordsPerPage();
-		StringBuffer query = new StringBuffer(
-				"select p from Restaurant p where 1=1 ");
+		StringBuilder query = new StringBuilder("select p from Restaurant p where 1=1 ");
 
 		if (restaurantFilter.getActiveFlag() != 0) {
 			query.append(" and p.activeFlag =:activeFlag");

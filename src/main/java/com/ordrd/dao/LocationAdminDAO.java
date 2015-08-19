@@ -22,11 +22,11 @@ public class LocationAdminDAO {
 	private EntityManager entityManager;
 
 	public List<LocationAdmin> findAll() {
-		CriteriaQuery<LocationAdmin> createQuery = entityManager.getCriteriaBuilder().createQuery(
+		CriteriaQuery<LocationAdmin> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(
 				LocationAdmin.class);
-		Root<LocationAdmin> from = createQuery.from(LocationAdmin.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<LocationAdmin> from = criteriaQuery.from(LocationAdmin.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public LocationAdmin findById(int locationAdminId) {

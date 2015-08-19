@@ -13,10 +13,12 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ordrd.model.Location;
+import com.ordrd.model.filter.LocationFilter;
 import com.ordrd.service.LocationService;
 
 @RestController
@@ -33,8 +35,14 @@ public class LocationController {
 	}
 
 	@RequestMapping(value = "/locations", method = RequestMethod.GET)
-	public ResponseEntity<List<Location>> getLocationList() {
-		List<Location> locationList = locationService.findAll();
+	public ResponseEntity<List<Location>> getLocationList(
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "city", required = false) String city) {
+
+		LocationFilter locationFilter = new LocationFilter();
+		locationFilter.setName(name);
+		locationFilter.setCity(city);
+		List<Location> locationList = locationService.getLocationList(locationFilter);
 		return ResponseEntity.status(HttpStatus.OK).body(locationList);
 	}
 

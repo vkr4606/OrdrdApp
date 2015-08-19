@@ -18,11 +18,11 @@ public class UserQueryDAO {
 	private EntityManager entityManager;
 
 	public List<UserQuery> findAll() {
-		CriteriaQuery<UserQuery> createQuery = entityManager.getCriteriaBuilder().createQuery(
+		CriteriaQuery<UserQuery> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(
 				UserQuery.class);
-		Root<UserQuery> from = createQuery.from(UserQuery.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<UserQuery> from = criteriaQuery.from(UserQuery.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public UserQuery findById(int userQueryId) {

@@ -18,11 +18,11 @@ public class CustomerDAO {
 	private EntityManager entityManager;
 
 	public List<Customer> findAll() {
-		CriteriaQuery<Customer> createQuery = entityManager.getCriteriaBuilder().createQuery(
+		CriteriaQuery<Customer> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(
 				Customer.class);
-		Root<Customer> from = createQuery.from(Customer.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<Customer> from = criteriaQuery.from(Customer.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public Customer findById(int customerId) {

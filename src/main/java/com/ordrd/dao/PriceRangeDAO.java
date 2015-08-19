@@ -18,11 +18,11 @@ public class PriceRangeDAO {
 	private EntityManager entityManager;
 
 	public List<PriceRange> findAll() {
-		CriteriaQuery<PriceRange> createQuery = entityManager.getCriteriaBuilder().createQuery(
+		CriteriaQuery<PriceRange> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(
 				PriceRange.class);
-		Root<PriceRange> from = createQuery.from(PriceRange.class);
-		createQuery.select(from);
-		return entityManager.createQuery(createQuery).getResultList();
+		Root<PriceRange> from = criteriaQuery.from(PriceRange.class);
+		criteriaQuery.select(from);
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 	public PriceRange findById(int priceRangeId) {
