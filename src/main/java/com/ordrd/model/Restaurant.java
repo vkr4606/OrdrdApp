@@ -49,7 +49,7 @@ public class Restaurant {
 	@JoinColumn(name = "LOCATION_ID")
 	private Location location;
 
-	@OneToOne(optional = true, fetch = FetchType.EAGER)
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "RESTAURANT_STATUS_ID")
 	private RestaurantStatus restaurantStatus;
 

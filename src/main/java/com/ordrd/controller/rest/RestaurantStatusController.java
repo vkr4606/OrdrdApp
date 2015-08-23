@@ -25,21 +25,21 @@ public class RestaurantStatusController {
 	@Autowired
 	private RestaurantStatusService restaurantStatusService;
 
-	@RequestMapping(value = "/restaurant-statuses/{restaurantStatusId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurants/{restaurantId}/status", method = RequestMethod.GET)
 	public ResponseEntity<RestaurantStatus> getRestaurantStatusById(
-			@PathVariable(value = "restaurantStatusId") String restaurantStatusId) {
+			@PathVariable(value = "restaurantId") String restaurantId) {
 		RestaurantStatus restaurantStatus = restaurantStatusService.findById(Integer
-				.parseInt(restaurantStatusId));
+				.parseInt(restaurantId));
 		return ResponseEntity.status(HttpStatus.OK).body(restaurantStatus);
 	}
 
-	@RequestMapping(value = "/restaurant-statuses", method = RequestMethod.GET)
+	@RequestMapping(value = "/restaurants/status", method = RequestMethod.GET)
 	public ResponseEntity<List<RestaurantStatus>> getRestaurantStatusList() {
 		List<RestaurantStatus> restaurantStatusList = restaurantStatusService.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(restaurantStatusList);
 	}
 
-	@RequestMapping(value = "/restaurant-statuses", method = RequestMethod.POST)
+	@RequestMapping(value = "/restaurants/status", method = RequestMethod.POST)
 	public ResponseEntity<?> createRestaurantStatus(@Valid RestaurantStatus restaurantStatus,
 			BindingResult bindingResult) {
 
@@ -54,9 +54,9 @@ public class RestaurantStatusController {
 		return ResponseEntity.status(HttpStatus.CREATED).location(locationUri).build();
 	}
 
-	@RequestMapping(value = "/restaurant-statuses/{restaurantStatusId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/restaurants/{restaurantId}/status", method = RequestMethod.POST)
 	public ResponseEntity<?> updateRestaurantStatus(
-			@PathVariable(value = "restaurantStatusId") String restaurantStatusId,
+			@PathVariable(value = "restaurantId") String restaurantId,
 			@Valid RestaurantStatus restaurantStatus, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
@@ -64,15 +64,15 @@ public class RestaurantStatusController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(allErrors);
 		}
 
-		restaurantStatus.setId(Integer.parseInt(restaurantStatusId));
+		restaurantStatus.setId(Integer.parseInt(restaurantId));
 		restaurantStatusService.update(restaurantStatus);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
-	@RequestMapping(value = "/restaurant-statuses/{restaurantStatusId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/restaurants/{restaurantId}/status", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteRestaurantStatus(
-			@PathVariable(value = "restaurantStatusId") String restaurantStatusId) {
-		restaurantStatusService.delete(Integer.parseInt(restaurantStatusId));
+			@PathVariable(value = "restaurantId") String restaurantId) {
+		restaurantStatusService.delete(Integer.parseInt(restaurantId));
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }

@@ -21,7 +21,7 @@ h3 {
 	line-height: 30px;
 }
 
-.inner-bg {
+.container {
 	padding: 50px 0 0 0;
 }
 
@@ -63,4 +63,17 @@ h3 {
 
 .form-bottom form .input-error {
 	border-color: #ff0000;
+}
+
+.btn-outline-inverse {
+	color: #7323dc;
+	background-color: white;
+	border-color: #7323dc;
+}
+
+.btn-outline-inverse:active, .btn-outline-inverse:focus,
+	.btn-outline-inverse:hover {
+	color: #fff;
+	background-color: #7323dc;
+	border-color: #7323dc;
 }

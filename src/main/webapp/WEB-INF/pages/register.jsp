@@ -15,10 +15,8 @@
 </head>
 
 <body>
-
   <form class="form-horizontal" method="POST" action="register">
     <fieldset>
-
       <!-- Form Name -->
       <legend>Registration Form</legend>
 
@@ -27,7 +25,6 @@
         <label class="col-md-4 control-label" for="firstName">First Name</label>
         <div class="col-md-4">
           <input id="firstName" name="firstName" type="text" class="form-control input-md" required>
-
         </div>
       </div>
 
@@ -36,7 +33,6 @@
         <label class="col-md-4 control-label" for="lastName">Last Name</label>
         <div class="col-md-4">
           <input id="lastName" name="lastName" type="text" class="form-control input-md">
-
         </div>
       </div>
 
@@ -45,7 +41,6 @@
         <label class="col-md-4 control-label" for="emailId">Email Id</label>
         <div class="col-md-4">
           <input id="emailId" name="emailId" type="text" class="form-control input-md" required>
-
         </div>
       </div>
 
@@ -56,7 +51,6 @@
             <span class="input-group-addon">+91</span>
             <input id="contactNo" name="contactNo" class="form-control" type="text" required>
           </div>
-
         </div>
       </div>
 
@@ -78,23 +72,24 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="save"></label>
         <div class="col-md-4">
-          <button type="submit" id="save" name="save" class="btn btn-info">Save</button>
+          <button type="submit" id="save" name="save" class="btn btn-outline-inverse">Save</button>
           <button type="reset" id="reset" name="reset" class="btn btn-default">Reset</button>
         </div>
       </div>
-      <div class="form-group">Have an existing account? <a href="login">log in</a></div>
+
       <div class="form-group">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
       </div>
 
     </fieldset>
   </form>
+  <div class="form-group">
+    Have an existing account? <a href="login">log in</a>
+  </div>
 
   <!-- Javascript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
